@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Faker</string>
+    <string name="name">Name</string>
+    <string name="mail">Mail</string>
+
+    <string name="toolbar_title_one">从者礼装信息</string>
+    <string name="search">Search</string>
+    <string name="filter">筛选</string>
+    <string name="filter_rank">按星级</string>
+    <string name="rank0">0</string>
+    <string name="rank1">1</string>
+    <string name="rank2">2</string>
+    <string name="rank3">3</string>
+    <string name="rank4">4</string>
+    <string name="rank5">5</string>
+    <string name="filter_class">按职阶</string>
+    <string name="class_shielder">盾阶</string>
+    <string name="class_saber">剑阶</string>
+    <string name="class_archer">弓阶</string>
+    <string name="class_lance">枪阶</string>
+    <string name="class_rider">骑阶</string>
+    <string name="class_cater">术阶</string>
+    <string name="class_assassin">杀阶</string>
+    <string name="class_berserker">狂阶</string>
+    <string name="class_ruler">裁阶</string>
+    <string name="class_avenger">仇阶</string>
+    <string name="class_moon_cancer">MC阶</string>
+    <string name="class_alterego">AE阶</string>
+    <string name="class_foreigner">降临阶</string>
+    <string name="class_beast">兽阶</string>
+
+</resources>

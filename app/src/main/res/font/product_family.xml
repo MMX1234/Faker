@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <font
+        android:font="@font/pixiv"
+        android:fontStyle="normal"
+        android:fontWeight="200"
+        app:font="@font/pixiv"
+        app:fontStyle="normal"
+        app:fontWeight="200" />
+    <font
+        android:font="@font/pixiv"
+        android:fontStyle="italic"
+        android:fontWeight="200"
+        app:font="@font/pixiv"
+        app:fontStyle="italic"
+        app:fontWeight="200" />
+</font-family>

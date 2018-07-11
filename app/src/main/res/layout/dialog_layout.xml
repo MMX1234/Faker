@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/filter_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/filter_text"
+        android:text="@string/filter_rank"
+        android:textSize="24sp" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/dialog_card_rank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/rank0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rank0"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/rank1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rank1"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/rank2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rank2"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/rank3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rank3"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/rank4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rank4"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/rank5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rank5"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/filter_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/filter_text"
+        android:text="@string/filter_class"
+        android:textSize="24sp" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/dialog_card_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/class_shielder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_shielder"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_saber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_saber"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_archer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_archer"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_lance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_lance"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/class_rider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_rider"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_cater"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_cater"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_assassin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_assassin"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_berserker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_berserker"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/class_ruler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_ruler"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_avenger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_avenger"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_alterego"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_alterego"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_foreigner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_foreigner"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/class_moon_cancer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_moon_cancer"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_beast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_beast"
+                    android:textSize="18sp" />
+
+                <CheckBox
+                    android:id="@+id/class_null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/class_beast"
+                    android:textSize="18sp"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

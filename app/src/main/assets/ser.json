@@ -4,7 +4,7 @@
   "jpName": "マシュ・キリエライト",
   "enName": "Mash Kyrielight",
   "nickName": "学妹，盾娘",
-  "class": "Shielder",
+  "serKind": "Shielder",
   "align": "秩序·善",
   "artsHits": "2",
   "busterHits": "1",

@@ -18,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -107,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                Log.i("MainActivity", stringBuilder.toString());
                 Ser serJson = new Gson().fromJson(stringBuilder.toString(), Ser.class);
                 Ser ser = new Ser();
                 ser.setId(serJson.getId());
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ser.setBaseHP(serJson.getBaseHP());
                 ser.setBreak4ATK(serJson.getBreak4ATK());
                 ser.setBreak4HP(serJson.getBreak4HP());
-                ser.setClassName(serJson.getClassName());
+                ser.setSerKind(serJson.getSerKind());
                 ser.setCnName(serJson.getCnName());
                 ser.save();
                 Toast.makeText(context, "创建数据库成功！", Toast.LENGTH_SHORT).show();

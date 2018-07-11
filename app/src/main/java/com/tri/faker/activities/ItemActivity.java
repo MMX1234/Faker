@@ -44,9 +44,10 @@ public class ItemActivity extends AppCompatActivity {
 
         Ser ser = LitePal.find(Ser.class, cardImageId);
 
-        collapsingToolbar.setTitle(ser.getCnName());
-        Toast.makeText(this, "职阶：" + ser.getClassName(), Toast.LENGTH_SHORT).show();
-
+        collapsingToolbar.setTitle(cardName);
+        if (cardImageId == 1) {
+            Toast.makeText(this, "职阶：" + ser.getSerKind(), Toast.LENGTH_SHORT).show();
+        }
         //loadPic(cardImageId, type, itemImageView);
     }
 

@@ -22,8 +22,8 @@ public class Ser extends LitePalSupport {
     private String jpName;
 
     //职阶
-    @SerializedName("class")
-    private String className;
+    @SerializedName("serKind")
+    private String serKind;
 
     // 星级
     @SerializedName("rank")
@@ -139,40 +139,6 @@ public class Ser extends LitePalSupport {
     // 幸运lucky
     // 宝具treasure
 
-    /*public Ser(int id, String cnName, String enName, String jpName, String rank, String faction, String baseATK, String baseHP, String break4ATK, String break4HP, String hitsArts, String hitsBuster, String hitsQuick, String hitsExtra, String painter, String cv, String align, String gender, String region, String source, String height, String weight, String starGeneration, String death, String starAbsorption, String npChargeATK, String npChargeDEF, String growth, String nickName, String traits, String way) {
-        this.id = id;
-        this.cnName = cnName;
-        this.enName = enName;
-        this.jpName = jpName;
-        this.rank = rank;
-        this.faction = faction;
-        this.baseATK = baseATK;
-        this.baseHP = baseHP;
-        this.break4ATK = break4ATK;
-        this.break4HP = break4HP;
-        this.hitsArts = hitsArts;
-        this.hitsBuster = hitsBuster;
-        this.hitsQuick = hitsQuick;
-        this.hitsExtra = hitsExtra;
-        this.painter = painter;
-        this.cv = cv;
-        this.align = align;
-        this.gender = gender;
-        this.region = region;
-        this.source = source;
-        this.height = height;
-        this.weight = weight;
-        this.starGeneration = starGeneration;
-        this.death = death;
-        this.starAbsorption = starAbsorption;
-        this.npChargeATK = npChargeATK;
-        this.npChargeDEF = npChargeDEF;
-        this.growth = growth;
-        this.nickName = nickName;
-        this.traits = traits;
-        this.way = way;
-    }*/
-
     public int getId() {
         return id;
     }
@@ -205,13 +171,12 @@ public class Ser extends LitePalSupport {
         this.jpName = jpName;
     }
 
-    @Override
-    public String getClassName() {
-        return className;
+    public String getSerKind() {
+        return serKind;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setSerKind(String serKind) {
+        this.serKind = serKind;
     }
 
     public String getRank() {

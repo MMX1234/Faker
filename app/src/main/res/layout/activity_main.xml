@@ -9,7 +9,7 @@
     tools:context=".activities.MainActivity"
     tools:openDrawer="start">
 
-    <include layout="@layout/fragment_list" />
+    <include layout="@layout/fragment_main" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

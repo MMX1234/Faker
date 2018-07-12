@@ -5,12 +5,9 @@ import android.content.DialogInterface;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
@@ -28,6 +25,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.tri.faker.R;
+import com.tri.faker.adapters.FragAdapter;
 import com.tri.faker.data.gson.Ser;
 import com.tri.faker.fragments.ContentFragment;
 
@@ -63,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        toolbar.setTitle("从者信息一览");
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -76,10 +75,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragments.add(ContentFragment.newInstance("2"));
         adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
 
-        vp = findViewById(R.id.viewpager);
+        vp = findViewById(R.id.vp_main);
         vp.setAdapter(adapter);
 
-        tab = findViewById(R.id.tabs);
+        tab = findViewById(R.id.tabs_main);
         tab.setTabMode(TabLayout.MODE_FIXED);
         tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));
         tab.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.white));
@@ -158,32 +157,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return true;
-    }
-
-    public class FragAdapter extends FragmentPagerAdapter {
-        private List<Fragment> mFragments;
-        private String[] mTitles;
-
-        FragAdapter(FragmentManager fm, List<Fragment> fragments, String[] titles) {
-            super(fm);
-            this.mFragments = fragments;
-            this.mTitles = titles;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragments.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragments.size();
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mTitles[position];
-        }
     }
 }

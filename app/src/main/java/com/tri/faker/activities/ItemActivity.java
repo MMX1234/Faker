@@ -3,6 +3,11 @@ package com.tri.faker.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,19 +17,30 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tri.faker.R;
+import com.tri.faker.adapters.FragAdapter;
 import com.tri.faker.data.gson.Ser;
+import com.tri.faker.fragments.SerFragment;
 
 import org.litepal.LitePal;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemActivity extends AppCompatActivity {
     public static final String FRUIT_NAME = "fruit_name";
     public static final String FRUIT_IMAGE_ID = "fruit_image_id";
     public static final String TYPE = "1";
 
+    private List<Fragment> fragments = new ArrayList<>();
+    public static final String[] tabTitle = new String[]{"技能", "资料", "模型", "语音"};
+    private FragAdapter adapter;
+    private ViewPager vp;
+    private TabLayout tab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.item_servant);
+        setContentView(R.layout.fragment_second);
 
         Intent intent = getIntent();
         String cardName = intent.getStringExtra(FRUIT_NAME);
@@ -32,7 +48,7 @@ public class ItemActivity extends AppCompatActivity {
         int type = intent.getIntExtra(TYPE, 1);
 
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar_second);
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         ImageView itemImageView = findViewById(R.id.item_image_view);
 
@@ -48,7 +64,25 @@ public class ItemActivity extends AppCompatActivity {
         if (cardImageId == 1) {
             Toast.makeText(this, "职阶：" + ser.getSerKind(), Toast.LENGTH_SHORT).show();
         }
-        //loadPic(cardImageId, type, itemImageView);
+        loadPic(cardImageId, type, itemImageView);
+
+
+        fragments.add(new SerFragment());
+        fragments.add(new SerFragment());
+        fragments.add(new SerFragment());
+        fragments.add(new SerFragment());
+
+        adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
+
+        vp = findViewById(R.id.vp_second);
+        vp.setAdapter(adapter);
+
+        tab=findViewById(R.id.tabs_second);
+        tab.setTabMode(TabLayout.MODE_FIXED);
+        tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));
+        tab.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.white));
+        ViewCompat.setElevation(tab, 10);
+        tab.setupWithViewPager(vp);
     }
 
     @Override

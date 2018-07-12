@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         if (mContext == null) {
             mContext = parent.getContext();
         }
-        View v = LayoutInflater.from(mContext).inflate(R.layout.item_list, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.content_card, parent, false);
         final ViewHolder holder = new ViewHolder(v);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

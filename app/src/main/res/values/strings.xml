@@ -29,4 +29,10 @@
     <string name="class_foreigner">降临阶</string>
     <string name="class_beast">兽阶</string>
 
+
+    <!--基础信息-->
+    <string name="base_rank">星级</string>
+    <string name="base_class">职阶</string>
+
+
 </resources>

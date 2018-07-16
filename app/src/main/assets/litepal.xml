@@ -3,6 +3,7 @@
     <dbname value="data" />
     <version value="1" />
     <list>
-        <mapping class="com.tri.faker.data.gson.Ser" />
+        <mapping class="com.tri.faker.data.Ser" />
+        <mapping class="com.tri.faker.data.Equip" />
     </list>
 </litepal>

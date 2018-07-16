@@ -20,7 +20,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tri.faker.R;
 import com.tri.faker.adapters.FragAdapter;
-import com.tri.faker.data.gson.Ser;
+import com.tri.faker.data.Equip;
+import com.tri.faker.data.Ser;
+import com.tri.faker.fragments.EquipFragment;
 import com.tri.faker.fragments.SerFragment;
 
 import org.litepal.LitePal;
@@ -32,9 +34,6 @@ public class ItemActivity extends AppCompatActivity {
     public static final String FRUIT_NAME = "fruit_name";
     public static final String FRUIT_IMAGE_ID = "fruit_image_id";
     public static final String TYPE = "1";
-
-    private List<Fragment> fragments = new ArrayList<>();
-    public static final String[] tabTitle = new String[]{"技能", "资料", "模型", "语音"};
     private FragAdapter adapter;
     private ViewPager vp;
     private TabLayout tab;
@@ -50,6 +49,7 @@ public class ItemActivity extends AppCompatActivity {
         int type = intent.getIntExtra(TYPE, 1);
 
         Ser ser = LitePal.find(Ser.class, cardImageId);
+        Equip equip = LitePal.find(Equip.class, cardImageId);
 
         Toolbar toolbar = findViewById(R.id.toolbar_second);
         setSupportActionBar(toolbar);
@@ -58,43 +58,58 @@ public class ItemActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setTitle(ser.getCnName());
-        collapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.text_blue, null));
+        vp = findViewById(R.id.vp_second);
+        tab = findViewById(R.id.tabs_second);
 
         ImageView baseHead = findViewById(R.id.base_head);
         TextView baseRank = findViewById(R.id.base_rank);
         TextView baseClass = findViewById(R.id.base_class);
 
-        Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + cardImageId + ".jpg"));
-        Glide.with(this).load(bm).into(baseHead);
+        CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.top_blue, null));
 
-        baseRank.setText(ser.getRank());
-        baseClass.setText(ser.getSerKind());
+        if (type == 1) {
+            collapsingToolbar.setTitle(ser.getCnName());
+            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + cardImageId + ".jpg"));
+            Glide.with(this).load(bm).into(baseHead);
+            baseRank.setText(ser.getRank());
+            baseClass.setText(ser.getSerKind());
 
-//        if (cardImageId == 1) {
-//            Toast.makeText(this, "职阶：" + ser.getSerKind(), Toast.LENGTH_SHORT).show();
-//        }
+            List<Fragment> fragments = new ArrayList<>();
+            String[] tabTitle = new String[]{"技能", "资料", "模型", "语音"};
 
+            fragments.add(SerFragment.newInstance(cardImageId));
+            fragments.add(SerFragment.newInstance(cardImageId));
+            fragments.add(SerFragment.newInstance(cardImageId));
+            fragments.add(SerFragment.newInstance(cardImageId));
+
+            adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
+            vp.setAdapter(adapter);
+
+            tab.setTabMode(TabLayout.MODE_FIXED);
+            tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));
+            tab.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.yellow));
+            ViewCompat.setElevation(tab, 10);
+            tab.setupWithViewPager(vp);
+        } else if (type == 2) {
+            collapsingToolbar.setTitle(equip.getCnName());
+            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/equip/" + cardImageId + ".jpg"));
+            Glide.with(this).load(bm).into(baseHead);
+            baseRank.setText(equip.getRank());
+            baseClass.setText(equip.getCost());
+
+            List<Fragment> fragments = new ArrayList<>();
+            String[] tabTitle = new String[]{"礼装信息"};
+
+            fragments.add(EquipFragment.newInstance(cardImageId));
+            adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
+            vp.setAdapter(adapter);
+            tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));
+            tab.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.yellow));
+            ViewCompat.setElevation(tab, 10);
+            tab.setupWithViewPager(vp);
+        }
         //loadPic(cardImageId, type, itemImageView);
-
-
-        fragments.add(new SerFragment());
-        fragments.add(new SerFragment());
-        fragments.add(new SerFragment());
-        fragments.add(new SerFragment());
-
-        adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
-
-        vp = findViewById(R.id.vp_second);
-        vp.setAdapter(adapter);
-
-        tab = findViewById(R.id.tabs_second);
-        tab.setTabMode(TabLayout.MODE_FIXED);
-        tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));
-        tab.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.yellow));
-        ViewCompat.setElevation(tab, 10);
-        tab.setupWithViewPager(vp);
     }
 
     @Override

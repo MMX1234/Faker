@@ -10,8 +10,8 @@
     <color name="white">#FFFFFF</color>
     <color name="filter_text">#b4b4b4</color>
 
-    <color name="bg_blue">#ad0080ff</color>
-    <color name="text_blue">#0080ff</color>
+    <color name="top_blue">#0080ff</color>
+    <color name="bottom_blue">#3d97ff</color>
     <color name="yellow">#ffff9c</color>
 
 </resources>

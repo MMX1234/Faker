@@ -1,4 +1,4 @@
-package com.tri.faker.data.gson;
+package com.tri.faker.data;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -48,6 +48,18 @@ public class Ser extends LitePalSupport {
     // 灵基4阶段HP
     @SerializedName("break4HP")
     private String break4HP;
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    //技能
+    @SerializedName("skill")
+    private String skill;
 
     // 蓝卡Hits
     @SerializedName("artsHits")

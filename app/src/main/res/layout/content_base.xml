@@ -13,7 +13,7 @@
         app:cardBackgroundColor="@color/cardview_light_background"
         app:cardCornerRadius="10dp">
 
-        <android.support.constraint.ConstraintLayout
+        <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,37 +27,32 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:fitsSystemWindows="true"
-                android:scaleType="center"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/base_class"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:scaleType="center" />
 
 
-            <TextView
-                android:id="@+id/base_class"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/base_class"
-                android:textColor="@color/top_blue"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/base_head"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/base_head"
-                app:layout_constraintTop_toBottomOf="@+id/base_head" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/base_rank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/base_rank"
-                android:textColor="@color/top_blue"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toEndOf="@+id/base_class"
-                app:layout_constraintStart_toStartOf="@+id/base_class"
-                app:layout_constraintTop_toBottomOf="@+id/base_class" />
+                <TextView
+                    android:id="@+id/base_rank"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base_rank"
+                    android:textColor="@color/top_blue"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/base_class"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/base_class"
+                    android:textColor="@color/top_blue"
+                    android:textSize="24sp" />
+            </LinearLayout>
 
 
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

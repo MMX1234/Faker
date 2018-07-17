@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,9 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemActivity extends AppCompatActivity {
-    public static final String FRUIT_NAME = "fruit_name";
-    public static final String FRUIT_IMAGE_ID = "fruit_image_id";
-    public static final String TYPE = "1";
+    public static final String ID = "ID";
+    public static final String TYPE = "TYPE";
     private FragAdapter adapter;
     private ViewPager vp;
     private TabLayout tab;
@@ -44,12 +44,13 @@ public class ItemActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_second);
 
         Intent intent = getIntent();
-        String cardName = intent.getStringExtra(FRUIT_NAME);
-        int cardImageId = intent.getIntExtra(FRUIT_IMAGE_ID, 1);
+        int id = intent.getIntExtra(ID, 1);
         int type = intent.getIntExtra(TYPE, 1);
 
-        Ser ser = LitePal.find(Ser.class, cardImageId);
-        Equip equip = LitePal.find(Equip.class, cardImageId);
+        Log.i("ItemMain", String.valueOf(id + "    " + type));
+
+        Ser ser = LitePal.find(Ser.class, id);
+        Equip equip = LitePal.find(Equip.class, id);
 
         Toolbar toolbar = findViewById(R.id.toolbar_second);
         setSupportActionBar(toolbar);
@@ -70,7 +71,7 @@ public class ItemActivity extends AppCompatActivity {
 
         if (type == 1) {
             collapsingToolbar.setTitle(ser.getCnName());
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + cardImageId + ".jpg"));
+            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + id + ".jpg"));
             Glide.with(this).load(bm).into(baseHead);
             baseRank.setText(ser.getRank());
             baseClass.setText(ser.getSerKind());
@@ -78,10 +79,10 @@ public class ItemActivity extends AppCompatActivity {
             List<Fragment> fragments = new ArrayList<>();
             String[] tabTitle = new String[]{"技能", "资料", "模型", "语音"};
 
-            fragments.add(SerFragment.newInstance(cardImageId));
-            fragments.add(SerFragment.newInstance(cardImageId));
-            fragments.add(SerFragment.newInstance(cardImageId));
-            fragments.add(SerFragment.newInstance(cardImageId));
+            fragments.add(SerFragment.newInstance(id));
+            fragments.add(SerFragment.newInstance(id));
+            fragments.add(SerFragment.newInstance(id));
+            fragments.add(SerFragment.newInstance(id));
 
             adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
             vp.setAdapter(adapter);
@@ -93,7 +94,7 @@ public class ItemActivity extends AppCompatActivity {
             tab.setupWithViewPager(vp);
         } else if (type == 2) {
             collapsingToolbar.setTitle(equip.getCnName());
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/equip/" + cardImageId + ".jpg"));
+            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/equip/" + id + ".jpg"));
             Glide.with(this).load(bm).into(baseHead);
             baseRank.setText(equip.getRank());
             baseClass.setText(equip.getCost());
@@ -101,7 +102,7 @@ public class ItemActivity extends AppCompatActivity {
             List<Fragment> fragments = new ArrayList<>();
             String[] tabTitle = new String[]{"礼装信息"};
 
-            fragments.add(EquipFragment.newInstance(cardImageId));
+            fragments.add(EquipFragment.newInstance(id));
             adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
             vp.setAdapter(adapter);
             tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));

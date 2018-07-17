@@ -1,5 +1,6 @@
 package com.tri.faker.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +40,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 int position = holder.getAdapterPosition();
                 Card card = mCards.get(position);
                 Intent intent = new Intent(mContext, ItemActivity.class);
-                intent.putExtra(ItemActivity.FRUIT_NAME, card.getName());
-                intent.putExtra(ItemActivity.FRUIT_IMAGE_ID, card.getImgId());
-                intent.putExtra(ItemActivity.TYPE, card.getCardType());
+                intent.putExtra(ItemActivity.ID, card.getId());
+                Log.i("CardAdapter", String.valueOf(card.getId()));
+                intent.putExtra(ItemActivity.TYPE, card.getType());
+                Log.i("CardAdapter", String.valueOf(card.getType()));
                 mContext.startActivity(intent);
             }
         });
@@ -51,15 +54,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Card card = mCards.get(position);
-        if (card.getCardType() == 1) {
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + card.getImgId() + ".jpg"));
-            holder.cardName.setText(card.getName());
+        if (card.getType() == 1) {
+            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + card.getId() + ".jpg"));
+            holder.cardId.setText("" + card.getId());
             Glide.with(mContext).load(bm).into(holder.cardImg);
-        } else if (card.getCardType() == 2) {
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/equip/" + card.getImgId() + ".jpg"));
-            holder.cardName.setText(card.getName());
+        } else if (card.getType() == 2) {
+            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/equip/" + card.getId() + ".jpg"));
+            holder.cardId.setText("" + card.getId());
             Glide.with(mContext).load(bm).into(holder.cardImg);
         }
+    }
+
+    private void showImg(Card card) {
     }
 
     @Override
@@ -71,14 +77,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         CardView cardView;
         ImageView cardImg;
-        TextView cardName;
+        TextView cardId;
 
 
         public ViewHolder(View v) {
             super(v);
             cardView = (CardView) v;
             cardImg = v.findViewById(R.id.card_img);
-            cardName = v.findViewById(R.id.card_name);
+            cardId = v.findViewById(R.id.card_id);
         }
     }
 

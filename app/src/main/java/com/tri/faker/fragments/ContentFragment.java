@@ -17,14 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContentFragment extends Fragment {
-    private static final String EXTRA_CONTENT = "0";
-    private RecyclerView rec;
-    private CardAdapter adapter;
+    private static final String EXTRA_CONTENT = "1";
     private List<Card> cardList = new ArrayList<>();
 
-    public static ContentFragment newInstance(String type) {
+    public static ContentFragment newInstance(int type) {
         Bundle arguments = new Bundle();
-        arguments.putString(EXTRA_CONTENT, type);
+        arguments.putInt(EXTRA_CONTENT, type);
         ContentFragment fragment = new ContentFragment();
         fragment.setArguments(arguments);
         return fragment;
@@ -35,29 +33,29 @@ public class ContentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.rec_layout, container, false);
 
-        initCards(getArguments().getString(EXTRA_CONTENT));
-        rec = v.findViewById(R.id.rec_view);
+        initCards(getArguments().getInt(EXTRA_CONTENT));
+        RecyclerView rec = v.findViewById(R.id.rec_view);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
-        adapter = new CardAdapter(cardList);
+        CardAdapter adapter = new CardAdapter(cardList);
         rec.setLayoutManager(layoutManager);
         rec.setAdapter(adapter);
 
         return v;
     }
 
-    private void initCards(String cardType) {
+    private void initCards(int type) {
         cardList.clear();
-        if (cardType.equals("1")) {
+        if (type == 1) {
             for (int i = 1; i <= 211; i++) {
                 Card[] cards = {
-                        new Card("" + i, i, 1)
+                        new Card(i, 1)
                 };
                 cardList.add(cards[0]);
             }
-        } else if (cardType.equals("2")) {
+        } else if (type == 2) {
             for (int i = 1; i <= 811; i++) {
                 Card[] cards = {
-                        new Card("" + i, i, 2)
+                        new Card(i, 2)
                 };
                 cardList.add(cards[0]);
             }

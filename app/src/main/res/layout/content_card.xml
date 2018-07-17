@@ -26,12 +26,12 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/card_name"
+            android:id="@+id/card_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:gravity="left|start"
+            android:gravity="bottom|left"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -1,37 +1,27 @@
 package com.tri.faker.data;
 
 public class Card {
-    private String name;
-    private int imgId;
-    private int cardType;
+    private int id;
+    private int type;
 
-    public Card(String name, int imgId, int cardType) {
-        this.name = name;
-        this.imgId = imgId;
-        this.cardType = cardType;
+    public Card(int id, int type) {
+        this.id = id;
+        this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getImgId() {
-        return imgId;
+    public int getType() {
+        return type;
     }
 
-    public void setImgId(int imgId) {
-        this.imgId = imgId;
-    }
-
-    public int getCardType() {
-        return cardType;
-    }
-
-    public void setCardType(int cardType) {
-        this.cardType = cardType;
+    public void setType(int type) {
+        this.type = type;
     }
 }

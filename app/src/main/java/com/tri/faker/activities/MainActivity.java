@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        fragments.add(ContentFragment.newInstance("1"));
-        fragments.add(ContentFragment.newInstance("2"));
+        fragments.add(ContentFragment.newInstance(1));
+        fragments.add(ContentFragment.newInstance(2));
         adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
 
         vp = findViewById(R.id.vp_main);
@@ -202,11 +202,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-//    class MyAsny extends AsyncTask<>{
-//
-//        @Override
-//        protected Object doInBackground(Object[] objects) {
-//            return null;
-//        }
-//    }
+    class MyAsyncTask extends AsyncTask<Void,String,String>{
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            return null;
+        }
+    }
 }

@@ -47,8 +47,6 @@ public class ItemActivity extends AppCompatActivity {
         int id = intent.getIntExtra(ID, 1);
         int type = intent.getIntExtra(TYPE, 1);
 
-        Log.i("ItemMain", String.valueOf(id + "    " + type));
-
         Ser ser = LitePal.find(Ser.class, id);
         Equip equip = LitePal.find(Equip.class, id);
 
@@ -71,8 +69,7 @@ public class ItemActivity extends AppCompatActivity {
 
         if (type == 1) {
             collapsingToolbar.setTitle(ser.getCnName());
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + id + ".jpg"));
-            Glide.with(this).load(bm).into(baseHead);
+
             baseRank.setText(ser.getRank());
             baseClass.setText(ser.getSerKind());
 
@@ -94,8 +91,7 @@ public class ItemActivity extends AppCompatActivity {
             tab.setupWithViewPager(vp);
         } else if (type == 2) {
             collapsingToolbar.setTitle(equip.getCnName());
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/equip/" + id + ".jpg"));
-            Glide.with(this).load(bm).into(baseHead);
+
             baseRank.setText(equip.getRank());
             baseClass.setText(equip.getCost());
 

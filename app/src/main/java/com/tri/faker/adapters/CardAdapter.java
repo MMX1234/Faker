@@ -38,9 +38,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 Card card = mCards.get(position);
                 Intent intent = new Intent(mContext, ItemActivity.class);
                 intent.putExtra(ItemActivity.ID, card.getId());
-                Log.i("CardAdapter", String.valueOf(card.getId()));
                 intent.putExtra(ItemActivity.TYPE, card.getType());
-                Log.i("CardAdapter", String.valueOf(card.getType()));
                 mContext.startActivity(intent);
             }
         });

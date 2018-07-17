@@ -1,7 +1,5 @@
 package com.tri.faker.fragments;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -61,8 +59,8 @@ public class EquipFragment extends Fragment {
         hpMax.setText((equip.getMaxHP() != null) ? equip.getMaxHP() : "--");
 
         if (equip.getIcon() != null) {
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/skill/" + equip.getIcon() + ".png"));
-            Glide.with(this).load(bm).into(icon);
+            String url = "https://img.fgowiki.com/mobile/images/Skill/" + equip.getIcon() + ".png";
+            Glide.with(this).load(url).into(icon);
         }
         skillBase.setText((equip.getSkillBase() != null) ? equip.getSkillBase() : "--");
         skillMax.setText((equip.getSkillMax() != null) ? equip.getSkillMax() : "--");

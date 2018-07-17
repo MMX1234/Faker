@@ -15,7 +15,6 @@ import com.tri.faker.data.Ser;
 import org.litepal.LitePal;
 
 public class SerFragment extends Fragment {
-    private static final int CONTENT_TYPE = 0;
     private static final String CARD_ID = "0";
 
 

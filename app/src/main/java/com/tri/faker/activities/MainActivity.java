@@ -20,14 +20,12 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tri.faker.R;
 import com.tri.faker.adapters.FragAdapter;
 import com.tri.faker.data.Equip;
-import com.tri.faker.data.Ser;
 import com.tri.faker.fragments.ContentFragment;
 
 import org.litepal.LitePal;
@@ -136,74 +134,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_gallery: {
-                String fileName = "json/ser.json";
-                StringBuilder stringBuilder = new StringBuilder();
-                //获得assets资源管理器
-                AssetManager assetManager = context.getAssets();
-                //使用IO流读取json文件内容
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                            assetManager.open(fileName), "utf-8"));
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Ser serJson = null;
-                serJson = new Gson().fromJson(stringBuilder.toString(), Ser.class);
-                Ser ser = new Ser();
-                ser.setId(serJson.getId());
-                ser.setAlign(serJson.getAlign());
-                ser.setBaseATK(serJson.getBaseATK());
-                ser.setBaseHP(serJson.getBaseHP());
-                ser.setBreak4ATK(serJson.getBreak4ATK());
-                ser.setBreak4HP(serJson.getBreak4HP());
-                ser.setSerKind(serJson.getSerKind());
-                ser.setCnName(serJson.getCnName());
-                ser.setSkill(serJson.getSkill());
-                ser.save();
-                Toast.makeText(context, "创建数据库成功！", Toast.LENGTH_SHORT).show();
+                break;
             }
             case R.id.nav_slideshow: {
-                String fileName = "json/equip.json";
-                StringBuilder stringBuilder = new StringBuilder();
-                //获得assets资源管理器
-                AssetManager assetManager = context.getAssets();
-                //使用IO流读取json文件内容
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                            assetManager.open(fileName), "utf-8"));
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                String json = stringBuilder.toString();
-                Gson gson = new Gson();
-                List<Equip> list = gson.fromJson(json, new TypeToken<List<Equip>>() {
-                }.getType());
-                for (int i = 0; i < list.size(); i++) {
-                    Equip equip = new Equip();
-                    equip.setId(list.get(i).getId());
-                    equip.setCnName(list.get(i).getCnName());
-                    equip.setRank(list.get(i).getRank());
-                    equip.setCost(list.get(i).getCost());
-                    equip.setPainter(list.get(i).getPainter());
-                    equip.setBaseATK(list.get(i).getBaseATK());
-                    equip.setBaseHP(list.get(i).getBaseHP());
-                    equip.setMaxATK(list.get(i).getMaxATK());
-                    equip.setMaxHP(list.get(i).getMaxHP());
-                    equip.setSkillBase(list.get(i).getSkillBase());
-                    equip.setSkillMax(list.get(i).getSkillMax());
-                    equip.setIcon(list.get(i).getIcon());
-                    equip.setDescription(list.get(i).getDescription());
-                    equip.save();
-                }
-                Toast.makeText(context, "创建数据库成功！", Toast.LENGTH_SHORT).show();
                 break;
             }
             default:

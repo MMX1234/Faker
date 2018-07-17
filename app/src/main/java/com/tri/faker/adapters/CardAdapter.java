@@ -1,10 +1,7 @@
 package com.tri.faker.adapters;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -54,18 +51,38 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Card card = mCards.get(position);
-        if (card.getType() == 1) {
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/servant/" + card.getId() + ".jpg"));
-            holder.cardId.setText("" + card.getId());
-            Glide.with(mContext).load(bm).into(holder.cardImg);
-        } else if (card.getType() == 2) {
-            Bitmap bm = BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/head/equip/" + card.getId() + ".jpg"));
-            holder.cardId.setText("" + card.getId());
-            Glide.with(mContext).load(bm).into(holder.cardImg);
-        }
+        showImg(card, holder);
     }
 
-    private void showImg(Card card) {
+    private void showImg(Card card, ViewHolder holder) {
+        int type = card.getType();
+        int id = card.getId();
+        String url = null;
+        if (type == 1) {
+            if (id < 10) {
+                url = "https://img.fgowiki.com/fgo/head/00" + id + ".jpg";
+            } else if (id < 100) {
+                url = "https://img.fgowiki.com/fgo/head/0" + id + ".jpg";
+            } else {
+                url = "https://img.fgowiki.com/fgo/head/" + id + ".jpg";
+            }
+            holder.cardId.setText(String.valueOf(card.getId()));
+            Glide.with(mContext)
+                    .load(url)
+                    .into(holder.cardImg);
+        } else if (type == 2) {
+            if (id < 10) {
+                url = "https://cdn.fgowiki.com/fgo/equip/00" + id + ".jpg";
+            } else if (id < 100) {
+                url = "https://cdn.fgowiki.com/fgo/equip/0" + id + ".jpg";
+            } else {
+                url = "https://cdn.fgowiki.com/fgo/equip/" + id + ".jpg";
+            }
+            holder.cardId.setText(String.valueOf(card.getId()));
+            Glide.with(mContext)
+                    .load(url)
+                    .into(holder.cardImg);
+        }
     }
 
     @Override

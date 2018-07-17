@@ -124,37 +124,37 @@ public class ItemActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void loadPic(int cardImageId, int type, ImageView itemImageView) {
+    public void loadPic(int id, int type, ImageView imageView) {
         String url = null;
         if (type == 1) {
-            if (cardImageId == 149 || cardImageId == 151 || cardImageId == 152 || cardImageId == 168) {
-                url = "https://img.fgowiki.com/fgo/card/servant/" + cardImageId + "A.png";
-            } else if (cardImageId < 10) {
-                url = "https://img.fgowiki.com/fgo/card/servant/00" + cardImageId + "D.png";
-            } else if (cardImageId < 100) {
-                if (cardImageId == 83) {
-                    url = "https://img.fgowiki.com/fgo/card/servant/0" + cardImageId + "A.png";
+            if (id == 149 || id == 151 || id == 152 || id == 168) {
+                url = "https://img.fgowiki.com/fgo/card/servant/" + id + "A.png";
+            } else if (id < 10) {
+                url = "https://img.fgowiki.com/fgo/card/servant/00" + id + "D.png";
+            } else if (id < 100) {
+                if (id == 83) {
+                    url = "https://img.fgowiki.com/fgo/card/servant/0" + id + "A.png";
                 } else {
-                    url = "https://img.fgowiki.com/fgo/card/servant/0" + cardImageId + "D.png";
+                    url = "https://img.fgowiki.com/fgo/card/servant/0" + id + "D.png";
                 }
             } else {
-                url = "https://img.fgowiki.com/fgo/card/servant/" + cardImageId + "D.png";
+                url = "https://img.fgowiki.com/fgo/card/servant/" + id + "D.png";
 
             }
             Glide.with(this)
                     .load(url)
-                    .into(itemImageView);
+                    .into(imageView);
         } else if (type == 2) {
-            if (cardImageId < 10) {
-                url = "https://img.fgowiki.com/fgo/card/equip/00" + cardImageId + "A.png";
-            } else if (cardImageId < 100) {
-                url = "https://img.fgowiki.com/fgo/card/equip/0" + cardImageId + "A.png";
+            if (id < 10) {
+                url = "https://img.fgowiki.com/fgo/card/equip/00" + id + "A.png";
+            } else if (id < 100) {
+                url = "https://img.fgowiki.com/fgo/card/equip/0" + id + "A.png";
             } else {
-                url = "https://img.fgowiki.com/fgo/card/equip/" + cardImageId + "A.png";
+                url = "https://img.fgowiki.com/fgo/card/equip/" + id + "A.png";
             }
             Glide.with(this)
                     .load(url)
-                    .into(itemImageView);
+                    .into(imageView);
         }
     }
 }

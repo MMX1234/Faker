@@ -31,18 +31,15 @@
 
 
     <!--基础信息-->
-    <string name="base_rank">星级</string>
-    <string name="base_class">职阶</string>
+    <string name="rank_rank">星级</string>
+    <string name="class_cost">职阶/cost</string>
+    <string name="zhen_ying_painter">阵营/绘师</string>
+    <string name="base_atk">基础ATK</string>
+    <string name="base_hp">基础HP</string>
+    <string name="max_atk">最大ATK</string>
+    <string name="max_hp">最大HP</string>
 
     <!--礼装信息-->
-    <string name="name_v">礼装名称</string>
-    <string name="rank_v">星级</string>
-    <string name="cost_v">cost</string>
-    <string name="painter_v">绘师</string>
-    <string name="atkBase_v">基础ATK</string>
-    <string name="hpBase_v">基础HP</string>
-    <string name="atkMax_v">最大ATK</string>
-    <string name="hpMax_v">最大HP</string>
     <string name="skillBase_v">固有技能</string>
     <string name="skillMax_v">界限突破</string>
     <string name="description_v">解说</string>

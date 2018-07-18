@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.tri.faker.R;
@@ -39,7 +39,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                 Intent intent = new Intent(mContext, ItemActivity.class);
                 intent.putExtra(ItemActivity.ID, card.getId());
                 intent.putExtra(ItemActivity.TYPE, card.getType());
-                mContext.startActivity(intent);
+                if (card.getType() == 1) {
+                    Toast.makeText(mContext, "功能完善中。。。请查看礼装一览", Toast.LENGTH_SHORT).show();
+                } else {
+                    mContext.startActivity(intent);
+                }
             }
         });
 

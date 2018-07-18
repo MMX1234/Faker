@@ -2,8 +2,10 @@ package com.tri.faker.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -71,48 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String fileName = "json/equip.json";
-                StringBuilder stringBuilder = new StringBuilder();
-                //获得assets资源管理器
-                AssetManager assetManager = context.getAssets();
-                //使用IO流读取json文件内容
-                try {
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                            assetManager.open(fileName), "utf-8"));
-                    String line;
-                    while ((line = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(line);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                String json = stringBuilder.toString();
-                Gson gson = new Gson();
-                List<Equip> list = gson.fromJson(json, new TypeToken<List<Equip>>() {
-                }.getType());
-                for (int i = 0; i < list.size(); i++) {
-                    Equip equip = new Equip();
-                    equip.setId(list.get(i).getId());
-                    equip.setCnName(list.get(i).getCnName());
-                    equip.setRank(list.get(i).getRank());
-                    equip.setCost(list.get(i).getCost());
-                    equip.setPainter(list.get(i).getPainter());
-                    equip.setBaseATK(list.get(i).getBaseATK());
-                    equip.setBaseHP(list.get(i).getBaseHP());
-                    equip.setMaxATK(list.get(i).getMaxATK());
-                    equip.setMaxHP(list.get(i).getMaxHP());
-                    equip.setSkillBase(list.get(i).getSkillBase());
-                    equip.setSkillMax(list.get(i).getSkillMax());
-                    equip.setIcon(list.get(i).getIcon());
-                    equip.setDescription(list.get(i).getDescription());
-                    equip.save();
-                }
-            }
-        }).start();
-
         fragments.add(ContentFragment.newInstance(1));
         fragments.add(ContentFragment.newInstance(2));
         adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
@@ -127,6 +87,58 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ViewCompat.setElevation(tab, 10);
         tab.setupWithViewPager(vp);
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (preferences.getString("isTrue", null) == null) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String fileName = "json/equip.json";
+                    StringBuilder stringBuilder = new StringBuilder();
+                    //获得assets资源管理器
+                    AssetManager assetManager = context.getAssets();
+                    //使用IO流读取json文件内容
+                    try {
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+                                assetManager.open(fileName), "utf-8"));
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    String json = stringBuilder.toString();
+                    Gson gson = new Gson();
+                    List<Equip> list = gson.fromJson(json, new TypeToken<List<Equip>>() {
+                    }.getType());
+                    for (int i = 0; i < list.size(); i++) {
+                        Equip equip = new Equip();
+                        equip.setId(list.get(i).getId());
+                        equip.setCnName(list.get(i).getCnName());
+                        equip.setRank(list.get(i).getRank());
+                        equip.setCost(list.get(i).getCost());
+                        equip.setPainter(list.get(i).getPainter());
+                        equip.setBaseATK(list.get(i).getBaseATK());
+                        equip.setBaseHP(list.get(i).getBaseHP());
+                        equip.setMaxATK(list.get(i).getMaxATK());
+                        equip.setMaxHP(list.get(i).getMaxHP());
+                        equip.setSkillBase(list.get(i).getSkillBase());
+                        equip.setSkillMax(list.get(i).getSkillMax());
+                        equip.setIcon(list.get(i).getIcon());
+                        equip.setDescription(list.get(i).getDescription());
+                        equip.save();
+                    }
+                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+                    editor.putString("isTrue", "true");
+                    editor.apply();
+                }
+            }).start();
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("注意！");
+        builder.setMessage("在点击图标进入详情时\n\n会获取高清立绘，并自动缓存\n\n下次加载不消耗流量\n\n建议wifi环境下查看\n\n后续完善图片开关");
+        builder.create().show();
 
     }
 

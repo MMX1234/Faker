@@ -1,8 +1,6 @@
 package com.tri.faker.activities;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
@@ -13,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -61,17 +58,30 @@ public class ItemActivity extends AppCompatActivity {
         tab = findViewById(R.id.tabs_second);
 
         ImageView baseHead = findViewById(R.id.base_head);
-        TextView baseRank = findViewById(R.id.base_rank);
-        TextView baseClass = findViewById(R.id.base_class);
+        TextView rank_rank = findViewById(R.id.rank_rank);
+        TextView class_cost = findViewById(R.id.class_cost);
+        TextView zhenying_painter = findViewById(R.id.zhen_ying_painter);
+        TextView base_atk = findViewById(R.id.base_atk);
+        TextView max_atk = findViewById(R.id.max_atk);
+        TextView base_hp = findViewById(R.id.base_hp);
+        TextView max_hp = findViewById(R.id.max_hp);
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.top_blue, null));
 
         if (type == 1) {
-            collapsingToolbar.setTitle(ser.getCnName());
+            collapsingToolbar.setTitle((equip.getCnName() != null) ? equip.getCnName() : "--");
 
-            baseRank.setText(ser.getRank());
-            baseClass.setText(ser.getSerKind());
+            loadPic(id, type, baseHead);
+            rank_rank.setText((equip.getRank() != null) ? "星级\n" + equip.getRank() : "星级\n--");
+            class_cost.setText((equip.getCost() != null) ? "cost\n" + equip.getCost() : "cost\n--");
+            zhenying_painter.setText((equip.getPainter() != null) ? "绘师\n" + equip.getPainter() : "绘师\n--");
+
+            base_atk.setText((equip.getBaseATK() != null) ? "基础ATK\n" + equip.getBaseATK() : "基础ATK\n--");
+            max_atk.setText((equip.getMaxATK() != null) ? "最大ATK\n" + equip.getMaxATK() : "最大ATK\n--");
+            base_hp.setText((equip.getBaseHP() != null) ? "基础HP\n" + equip.getBaseHP() : "基础HP\n--");
+            max_hp.setText((equip.getMaxHP() != null) ? "最大HP\n" + equip.getMaxHP() : "最大ATK\n--");
+
 
             List<Fragment> fragments = new ArrayList<>();
             String[] tabTitle = new String[]{"技能", "资料", "模型", "语音"};
@@ -90,10 +100,17 @@ public class ItemActivity extends AppCompatActivity {
             ViewCompat.setElevation(tab, 10);
             tab.setupWithViewPager(vp);
         } else if (type == 2) {
-            collapsingToolbar.setTitle(equip.getCnName());
+            collapsingToolbar.setTitle((equip.getCnName() != null) ? equip.getCnName() : "--");
 
-            baseRank.setText(equip.getRank());
-            baseClass.setText(equip.getCost());
+            loadPic(id, type, baseHead);
+            rank_rank.setText((equip.getRank() != null) ? "星级\n" + equip.getRank() : "星级\n--");
+            class_cost.setText((equip.getCost() != null) ? "cost\n" + equip.getCost() : "cost\n--");
+            zhenying_painter.setText((equip.getPainter() != null) ? "绘师\n" + equip.getPainter() : "绘师\n--");
+
+            base_atk.setText((equip.getBaseATK() != null) ? "基础ATK\n" + equip.getBaseATK() : "基础ATK\n--");
+            max_atk.setText((equip.getMaxATK() != null) ? "最大ATK\n" + equip.getMaxATK() : "最大ATK\n--");
+            base_hp.setText((equip.getBaseHP() != null) ? "基础HP\n" + equip.getBaseHP() : "基础HP\n--");
+            max_hp.setText((equip.getMaxHP() != null) ? "最大HP\n" + equip.getMaxHP() : "最大ATK\n--");
 
             List<Fragment> fragments = new ArrayList<>();
             String[] tabTitle = new String[]{"礼装信息"};
@@ -106,7 +123,6 @@ public class ItemActivity extends AppCompatActivity {
             ViewCompat.setElevation(tab, 10);
             tab.setupWithViewPager(vp);
         }
-        //loadPic(cardImageId, type, itemImageView);
     }
 
     @Override

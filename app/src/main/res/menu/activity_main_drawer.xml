@@ -11,11 +11,11 @@
             android:checkable="false"
             android:checked="false"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="创建数据" />
+            android:title="暂无功能" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="礼装数据" />
+            android:title="暂无功能" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

@@ -46,14 +46,14 @@ public class ContentFragment extends Fragment {
     private void initCards(int type) {
         cardList.clear();
         if (type == 1) {
-            for (int i = 1; i <= 211; i++) {
+            for (int i = 1; i <= 212; i++) {
                 Card[] cards = {
                         new Card(i, 1)
                 };
                 cardList.add(cards[0]);
             }
         } else if (type == 2) {
-            for (int i = 1; i <= 811; i++) {
+            for (int i = 1; i <= 812; i++) {
                 Card[] cards = {
                         new Card(i, 2)
                 };

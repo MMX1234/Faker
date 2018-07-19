@@ -113,9 +113,10 @@ public class ItemActivity extends AppCompatActivity {
             max_hp.setText((equip.getMaxHP() != null) ? "最大HP\n" + equip.getMaxHP() : "最大ATK\n--");
 
             List<Fragment> fragments = new ArrayList<>();
-            String[] tabTitle = new String[]{"礼装信息"};
+            String[] tabTitle = new String[]{"高清立绘", "礼装信息"};
 
-            fragments.add(EquipFragment.newInstance(id));
+            fragments.add(EquipFragment.newInstance(id, 1));
+            fragments.add(EquipFragment.newInstance(id, 2));
             adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
             vp.setAdapter(adapter);
             tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));

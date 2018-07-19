@@ -145,12 +145,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_gallery: {
-                break;
-            }
-            case R.id.nav_slideshow: {
-                break;
-            }
             default:
                 break;
         }
@@ -172,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.filter: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 final View v = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_layout, null);
-                builder.setTitle("筛选");
+                builder.setTitle("筛选(功能完善中。。。)");
                 builder.setView(v);
                 builder.setNegativeButton("返回", new DialogInterface.OnClickListener() {
                     @Override

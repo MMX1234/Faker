@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,13 +96,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         CardView cardView;
+        LinearLayout linearLayout;
         ImageView cardImg;
         TextView cardId;
 
 
         public ViewHolder(View v) {
             super(v);
-            cardView = (CardView) v;
+            linearLayout = (LinearLayout) v;
+            cardView = v.findViewById(R.id.card_view);
             cardImg = v.findViewById(R.id.card_img);
             cardId = v.findViewById(R.id.card_id);
         }

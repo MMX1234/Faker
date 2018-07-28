@@ -22,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,6 +31,7 @@ import com.tri.faker.R;
 import com.tri.faker.adapters.FragAdapter;
 import com.tri.faker.data.Equip;
 import com.tri.faker.fragments.ContentFragment;
+import com.tri.faker.util.EquipUtil;
 
 import org.litepal.LitePal;
 
@@ -38,7 +41,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener {
     public static DrawerLayout sDrawerLayout;
     private List<Fragment> fragments = new ArrayList<>();
     public static final String[] tabTitle = new String[]{"从者一览", "礼装一览"};
@@ -73,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        fragments.add(ContentFragment.newInstance(1));
-        fragments.add(ContentFragment.newInstance(2));
+        fragments.add(ContentFragment.newInstance(1, "all"));
+        fragments.add(ContentFragment.newInstance(2, "all"));
         adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
 
         vp = findViewById(R.id.vp_main);
@@ -92,54 +95,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String fileName = "json/equip.json";
-                    StringBuilder stringBuilder = new StringBuilder();
-                    //获得assets资源管理器
-                    AssetManager assetManager = context.getAssets();
-                    //使用IO流读取json文件内容
-                    try {
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
-                                assetManager.open(fileName), "utf-8"));
-                        String line;
-                        while ((line = bufferedReader.readLine()) != null) {
-                            stringBuilder.append(line);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    String json = stringBuilder.toString();
-                    Gson gson = new Gson();
-                    List<Equip> list = gson.fromJson(json, new TypeToken<List<Equip>>() {
-                    }.getType());
-                    for (int i = 0; i < list.size(); i++) {
-                        Equip equip = new Equip();
-                        equip.setId(list.get(i).getId());
-                        equip.setCnName(list.get(i).getCnName());
-                        equip.setRank(list.get(i).getRank());
-                        equip.setCost(list.get(i).getCost());
-                        equip.setPainter(list.get(i).getPainter());
-                        equip.setBaseATK(list.get(i).getBaseATK());
-                        equip.setBaseHP(list.get(i).getBaseHP());
-                        equip.setMaxATK(list.get(i).getMaxATK());
-                        equip.setMaxHP(list.get(i).getMaxHP());
-                        equip.setSkillBase(list.get(i).getSkillBase());
-                        equip.setSkillMax(list.get(i).getSkillMax());
-                        equip.setIcon(list.get(i).getIcon());
-                        equip.setDescription(list.get(i).getDescription());
-                        equip.save();
-                    }
-                    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-                    editor.putString("isTrue", "true");
-                    editor.apply();
+                    EquipUtil equipUtil=new EquipUtil();
+                    equipUtil.setEquipData(context);
                 }
             }).start();
         }
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("注意！");
-        builder.setMessage("在点击图标进入详情时\n\n会获取高清立绘，并自动缓存\n\n下次加载不消耗流量\n\n建议wifi环境下查看\n\n后续完善图片开关");
-        builder.create().show();
-
     }
 
     @Override
@@ -166,6 +126,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.filter: {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 final View v = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_layout, null);
+                CheckBox rank0 = v.findViewById(R.id.rank0);
+                CheckBox rank1 = v.findViewById(R.id.rank1);
+                CheckBox rank2 = v.findViewById(R.id.rank2);
+                CheckBox rank3 = v.findViewById(R.id.rank3);
+                CheckBox rank4 = v.findViewById(R.id.rank4);
+                CheckBox rank5 = v.findViewById(R.id.rank5);
+
+                rank0.setOnCheckedChangeListener(this);
+                rank1.setOnCheckedChangeListener(this);
+                rank2.setOnCheckedChangeListener(this);
+                rank3.setOnCheckedChangeListener(this);
+                rank4.setOnCheckedChangeListener(this);
+                rank5.setOnCheckedChangeListener(this);
+
                 builder.setTitle("筛选(功能完善中。。。)");
                 builder.setView(v);
                 builder.setNegativeButton("返回", new DialogInterface.OnClickListener() {
@@ -181,5 +155,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.rank0: {
+                if (isChecked) {
+                    String rank = String.valueOf(buttonView.getText());
+                    fragments.remove(ContentFragment.newInstance(2, "all"));
+                    fragments.add(ContentFragment.newInstance(2, rank));
+                    buttonView.setChecked(true);
+                }
+                break;
+            }
+        }
     }
 }

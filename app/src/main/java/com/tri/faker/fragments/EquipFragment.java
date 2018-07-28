@@ -74,8 +74,6 @@ public class EquipFragment extends Fragment {
             Glide.with(this)
                     .load(url)
                     .into(img);
-
-
         } else if (frag == 2) {
             v = inflater.inflate(R.layout.content_equip, container, false);
             final NestedScrollView nsv = v.findViewById(R.id.nsv);

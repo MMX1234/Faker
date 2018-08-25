@@ -3,7 +3,6 @@ package com.tri.faker.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -23,25 +22,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.tri.faker.R;
 import com.tri.faker.adapters.FragAdapter;
-import com.tri.faker.data.Equip;
 import com.tri.faker.fragments.ContentFragment;
-import com.tri.faker.util.EquipUtil;
+import com.tri.faker.fragments.EquipMainFrag;
+import com.tri.faker.util.CraftsUtil;
 
 import org.litepal.LitePal;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static DrawerLayout sDrawerLayout;
     private List<Fragment> fragments = new ArrayList<>();
     public static final String[] tabTitle = new String[]{"从者一览", "礼装一览"};
@@ -95,16 +89,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    EquipUtil equipUtil=new EquipUtil();
-                    equipUtil.setEquipData(context);
+                    CraftsUtil craftsUtil = new CraftsUtil();
+                    craftsUtil.setCraftsData(context);
                 }
             }).start();
+
+//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//            builder.setTitle("注意！");
+//            builder.setMessage("在点击图标进入详情时\n\n会获取高清立绘，并自动缓存\n\n下次加载不消耗流量\n\n建议wifi环境下查看\n\n后续完善图片开关");
+//            builder.create().show();
         }
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.nav_camera: {
+                fragments.remove(1);
+                fragments.add(1, EquipMainFrag.newInstance("1"));
+                Toast.makeText(context, "一星筛选", Toast.LENGTH_SHORT).show();
+                break;
+            }
             default:
                 break;
         }
@@ -133,13 +138,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 CheckBox rank4 = v.findViewById(R.id.rank4);
                 CheckBox rank5 = v.findViewById(R.id.rank5);
 
-                rank0.setOnCheckedChangeListener(this);
-                rank1.setOnCheckedChangeListener(this);
-                rank2.setOnCheckedChangeListener(this);
-                rank3.setOnCheckedChangeListener(this);
-                rank4.setOnCheckedChangeListener(this);
-                rank5.setOnCheckedChangeListener(this);
-
                 builder.setTitle("筛选(功能完善中。。。)");
                 builder.setView(v);
                 builder.setNegativeButton("返回", new DialogInterface.OnClickListener() {
@@ -155,20 +153,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return true;
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.rank0: {
-                if (isChecked) {
-                    String rank = String.valueOf(buttonView.getText());
-                    fragments.remove(ContentFragment.newInstance(2, "all"));
-                    fragments.add(ContentFragment.newInstance(2, rank));
-                    buttonView.setChecked(true);
-                }
-                break;
-            }
-        }
     }
 }

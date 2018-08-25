@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.tri.faker.R;
 import com.tri.faker.adapters.CardAdapter;
 import com.tri.faker.data.Card;
-import com.tri.faker.data.Equip;
+import com.tri.faker.data.Crafts;
 
 import org.litepal.LitePal;
 
@@ -40,14 +40,14 @@ public class ContentFragment extends Fragment {
         int type = getArguments().getInt(EXTRA_CONTENT);
         String rank = getArguments().getString(CONTENT_RANK);
         if (("1").equals(rank)) {
-            List<Equip> equips = LitePal
+            List<Crafts> crafts = LitePal
                     .select("id")
                     .where("rank = ", rank)
                     .order("id")
-                    .find(Equip.class);
-            for (int i = 0; i < equips.size(); i++) {
+                    .find(Crafts.class);
+            for (int i = 0; i < crafts.size(); i++) {
                 Card[] cards = {
-                        new Card(equips.get(i).getId(), 2)
+                        new Card(crafts.get(i).getId(), 2)
                 };
                 cardList.add(cards[0]);
             }
@@ -74,7 +74,7 @@ public class ContentFragment extends Fragment {
                 cardList.add(cards[0]);
             }
         } else if (type == 2) {
-            for (int i = 1; i <= 812; i++) {
+            for (int i = 1; i <= 892; i++) {
                 Card[] cards = {
                         new Card(i, 2)
                 };

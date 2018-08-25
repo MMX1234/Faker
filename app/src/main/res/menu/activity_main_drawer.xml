@@ -4,8 +4,9 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_camera"
+            android:checkable="true"
             android:icon="@drawable/ic_menu_camera"
-            android:title="暂无功能" />
+            android:title="一星筛选" />
         <item
             android:id="@+id/nav_gallery"
             android:checkable="false"

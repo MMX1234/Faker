@@ -17,6 +17,9 @@ import com.bumptech.glide.Glide;
 import com.tri.faker.R;
 import com.tri.faker.activities.ItemActivity;
 import com.tri.faker.data.Card;
+import com.tri.faker.data.Crafts;
+
+import org.litepal.LitePal;
 
 import java.util.List;
 
@@ -74,13 +77,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                     .load(url)
                     .into(holder.cardImg);
         } else if (type == 2) {
-            if (id < 10) {
-                url = "https://cdn.fgowiki.com/fgo/equip/00" + id + ".jpg";
-            } else if (id < 100) {
-                url = "https://cdn.fgowiki.com/fgo/equip/0" + id + ".jpg";
-            } else {
-                url = "https://cdn.fgowiki.com/fgo/equip/" + id + ".jpg";
-            }
+            Crafts crafts = LitePal.find(Crafts.class, id);
+            url = "https://www.fgo.wiki" + crafts.getImg();
             holder.cardId.setText(String.valueOf(card.getId()));
             Glide.with(mContext)
                     .load(url)

@@ -34,10 +34,8 @@
     <string name="rank_rank">星级</string>
     <string name="class_cost">职阶/cost</string>
     <string name="zhen_ying_painter">阵营/绘师</string>
-    <string name="base_atk">基础ATK</string>
-    <string name="base_hp">基础HP</string>
-    <string name="max_atk">最大ATK</string>
-    <string name="max_hp">最大HP</string>
+    <string name="atk">ATK</string>
+    <string name="hp">HP</string>
 
     <!--礼装信息-->
     <string name="skillBase_v">固有技能</string>

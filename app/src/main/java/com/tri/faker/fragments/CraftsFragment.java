@@ -18,7 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.tri.faker.R;
-import com.tri.faker.data.Equip;
+import com.tri.faker.data.Crafts;
 
 import org.litepal.LitePal;
 
@@ -26,15 +26,15 @@ import jp.wasabeef.glide.transformations.BlurTransformation;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
-public class EquipFragment extends Fragment {
+public class CraftsFragment extends Fragment {
     private static final String EQUIP_ID = "EQUIP_ID";
     private static final String EQUIP_FRAG = "EQUIP_FRAG";
 
-    public static EquipFragment newInstance(int id, int frag) {
+    public static CraftsFragment newInstance(int id, int frag) {
         Bundle arguments = new Bundle();
         arguments.putInt(EQUIP_ID, id);
         arguments.putInt(EQUIP_FRAG, frag);
-        EquipFragment fragment = new EquipFragment();
+        CraftsFragment fragment = new CraftsFragment();
         fragment.setArguments(arguments);
         return fragment;
     }
@@ -78,14 +78,13 @@ public class EquipFragment extends Fragment {
             v = inflater.inflate(R.layout.content_equip, container, false);
             final NestedScrollView nsv = v.findViewById(R.id.nsv);
             ImageView icon = v.findViewById(R.id.skill_img);
-            TextView skillBase = v.findViewById(R.id.skill_base);
-            TextView skillMax = v.findViewById(R.id.skill_max);
+            TextView skill = v.findViewById(R.id.skill_base);
             TextView description = v.findViewById(R.id.description);
 
-            Equip equip = LitePal.find(Equip.class, id);
+            Crafts crafts = LitePal.find(Crafts.class, id);
 
-            if (equip.getIcon() != null) {
-                url = "https://img.fgowiki.com/mobile/images/Skill/" + equip.getIcon() + ".png";
+            if (crafts.getIcon() != null) {
+                url = "https://www.fate.wiki" + crafts.getIcon();
                 Glide.with(this).load(url).into(icon);
             }
 
@@ -106,9 +105,8 @@ public class EquipFragment extends Fragment {
                         }
                     });
 
-            skillBase.setText((equip.getSkillBase() != null) ? "固有技能\n" + equip.getSkillBase() : "固有技能\n--");
-            skillMax.setText((equip.getSkillMax() != null) ? "界限突破\n" + equip.getSkillMax() : "界限突破\n--");
-            description.setText((equip.getDescription() != null) ? "解说\n" + equip.getDescription() : "解说\n--");
+            skill.setText((crafts.getSkill() != null) ? "固有技能\n" + crafts.getSkill() : "固有技能\n--");
+            description.setText((crafts.getDescription() != null) ? "解说\n" + crafts.getDescription() : "解说\n--");
         }
         return v;
     }

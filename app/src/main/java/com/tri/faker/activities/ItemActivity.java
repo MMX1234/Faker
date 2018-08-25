@@ -1,7 +1,9 @@
 package com.tri.faker.activities;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -18,9 +20,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tri.faker.R;
 import com.tri.faker.adapters.FragAdapter;
-import com.tri.faker.data.Equip;
+import com.tri.faker.data.Crafts;
 import com.tri.faker.data.Ser;
-import com.tri.faker.fragments.EquipFragment;
+import com.tri.faker.fragments.CraftsFragment;
 import com.tri.faker.fragments.SerFragment;
 
 import org.litepal.LitePal;
@@ -35,6 +37,7 @@ public class ItemActivity extends AppCompatActivity {
     private ViewPager vp;
     private TabLayout tab;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +48,7 @@ public class ItemActivity extends AppCompatActivity {
         int type = intent.getIntExtra(TYPE, 1);
 
         Ser ser = LitePal.find(Ser.class, id);
-        Equip equip = LitePal.find(Equip.class, id);
+        Crafts crafts = LitePal.find(Crafts.class, id);
 
         Toolbar toolbar = findViewById(R.id.toolbar_second);
         setSupportActionBar(toolbar);
@@ -60,27 +63,23 @@ public class ItemActivity extends AppCompatActivity {
         ImageView baseHead = findViewById(R.id.base_head);
         TextView rank_rank = findViewById(R.id.rank_rank);
         TextView class_cost = findViewById(R.id.class_cost);
-        TextView zhenying_painter = findViewById(R.id.zhen_ying_painter);
-        TextView base_atk = findViewById(R.id.base_atk);
-        TextView max_atk = findViewById(R.id.max_atk);
-        TextView base_hp = findViewById(R.id.base_hp);
-        TextView max_hp = findViewById(R.id.max_hp);
+        TextView atk = findViewById(R.id.atk);
+        TextView hp = findViewById(R.id.hp);
 
         CollapsingToolbarLayout collapsingToolbar = findViewById(R.id.collapsing_toolbar);
-        collapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.top_blue, null));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            collapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.top_blue, null));
+        }
 
         if (type == 1) {
-            collapsingToolbar.setTitle((equip.getCnName() != null) ? equip.getCnName() : "--");
+            collapsingToolbar.setTitle((crafts.getCnName() != null) ? crafts.getCnName() : "--");
 
             loadPic(id, type, baseHead);
-            rank_rank.setText((equip.getRank() != null) ? "星级\n" + equip.getRank() : "星级\n--");
-            class_cost.setText((equip.getCost() != null) ? "cost\n" + equip.getCost() : "cost\n--");
-            zhenying_painter.setText((equip.getPainter() != null) ? "绘师\n" + equip.getPainter() : "绘师\n--");
+            rank_rank.setText((crafts.getRank() != null) ? "星级\n" + crafts.getRank() : "星级\n--");
+            class_cost.setText((crafts.getCost() != null) ? "cost\n" + crafts.getCost() : "cost\n--");
 
-            base_atk.setText((equip.getBaseATK() != null) ? "基础ATK\n" + equip.getBaseATK() : "基础ATK\n--");
-            max_atk.setText((equip.getMaxATK() != null) ? "最大ATK\n" + equip.getMaxATK() : "最大ATK\n--");
-            base_hp.setText((equip.getBaseHP() != null) ? "基础HP\n" + equip.getBaseHP() : "基础HP\n--");
-            max_hp.setText((equip.getMaxHP() != null) ? "最大HP\n" + equip.getMaxHP() : "最大ATK\n--");
+            atk.setText((crafts.getAtk() != null) ? "基础-最大atk\n" + crafts.getAtk() : "基础-最大atk\n--");
+            hp.setText((crafts.getHp() != null) ? "基础-最大hp\n" + crafts.getHp() : "基础-最大hp\n--");
 
 
             List<Fragment> fragments = new ArrayList<>();
@@ -100,23 +99,20 @@ public class ItemActivity extends AppCompatActivity {
             ViewCompat.setElevation(tab, 10);
             tab.setupWithViewPager(vp);
         } else if (type == 2) {
-            collapsingToolbar.setTitle((equip.getCnName() != null) ? equip.getCnName() : "--");
+            collapsingToolbar.setTitle((crafts.getCnName() != null) ? crafts.getCnName() : "--");
 
             loadPic(id, type, baseHead);
-            rank_rank.setText((equip.getRank() != null) ? "星级\n" + equip.getRank() : "星级\n--");
-            class_cost.setText((equip.getCost() != null) ? "cost\n" + equip.getCost() : "cost\n--");
-            zhenying_painter.setText((equip.getPainter() != null) ? "绘师\n" + equip.getPainter() : "绘师\n--");
+            rank_rank.setText((crafts.getRank() != null) ? "星级\n" + crafts.getRank() : "星级\n--");
+            class_cost.setText((crafts.getCost() != null) ? "cost\n" + crafts.getCost() : "cost\n--");
 
-            base_atk.setText((equip.getBaseATK() != null) ? "基础ATK\n" + equip.getBaseATK() : "基础ATK\n--");
-            max_atk.setText((equip.getMaxATK() != null) ? "最大ATK\n" + equip.getMaxATK() : "最大ATK\n--");
-            base_hp.setText((equip.getBaseHP() != null) ? "基础HP\n" + equip.getBaseHP() : "基础HP\n--");
-            max_hp.setText((equip.getMaxHP() != null) ? "最大HP\n" + equip.getMaxHP() : "最大ATK\n--");
+            atk.setText((crafts.getAtk() != null) ? "atk\n" + crafts.getAtk() : "atk\n--");
+            hp.setText((crafts.getHp() != null) ? "hp\n" + crafts.getHp() : "hp\n--");
 
             List<Fragment> fragments = new ArrayList<>();
             String[] tabTitle = new String[]{"高清立绘", "礼装信息"};
 
-            fragments.add(EquipFragment.newInstance(id, 1));
-            fragments.add(EquipFragment.newInstance(id, 2));
+            fragments.add(CraftsFragment.newInstance(id, 1));
+            fragments.add(CraftsFragment.newInstance(id, 2));
             adapter = new FragAdapter(getSupportFragmentManager(), fragments, tabTitle);
             vp.setAdapter(adapter);
             tab.setTabTextColors(ContextCompat.getColor(this, R.color.item_unselected), ContextCompat.getColor(this, R.color.white));

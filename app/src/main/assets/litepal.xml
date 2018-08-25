@@ -4,6 +4,6 @@
     <version value="1" />
     <list>
         <mapping class="com.tri.faker.data.Ser" />
-        <mapping class="com.tri.faker.data.Equip" />
+        <mapping class="com.tri.faker.data.Crafts" />
     </list>
 </litepal>

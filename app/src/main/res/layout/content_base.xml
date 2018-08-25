@@ -69,14 +69,6 @@
                         android:textColor="@color/top_blue"
                         android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/zhen_ying_painter"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/zhen_ying_painter"
-                        android:textColor="@color/top_blue"
-                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -86,47 +78,21 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/base_atk"
+                        android:id="@+id/atk"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
                         android:layout_weight="1"
-                        android:text="@string/base_atk"
+                        android:text="@string/atk"
                         android:textColor="@color/top_blue"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/max_atk"
+                        android:id="@+id/hp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/max_atk"
-                        android:textColor="@color/top_blue"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/base_hp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:layout_weight="1"
-                        android:text="@string/base_hp"
-                        android:textColor="@color/top_blue"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/max_hp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/max_hp"
+                        android:text="@string/hp"
                         android:textColor="@color/top_blue"
                         android:textSize="18sp" />
                 </LinearLayout>

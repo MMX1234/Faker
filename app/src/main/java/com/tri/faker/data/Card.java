@@ -9,6 +9,10 @@ public class Card {
         this.type = type;
     }
 
+    public Card(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

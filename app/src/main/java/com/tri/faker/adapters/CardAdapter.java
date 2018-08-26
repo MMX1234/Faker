@@ -78,7 +78,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
                     .into(holder.cardImg);
         } else if (type == 2) {
             Crafts crafts = LitePal.find(Crafts.class, id);
-            url = "https://www.fgo.wiki" + crafts.getImg();
+            url = crafts.getImg();
             holder.cardId.setText(String.valueOf(card.getId()));
             Glide.with(mContext)
                     .load(url)

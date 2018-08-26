@@ -84,7 +84,7 @@ public class CraftsFragment extends Fragment {
             Crafts crafts = LitePal.find(Crafts.class, id);
 
             if (crafts.getIcon() != null) {
-                url = "https://www.fate.wiki" + crafts.getIcon();
+                url = crafts.getIcon();
                 Glide.with(this).load(url).into(icon);
             }
 

@@ -52,13 +52,13 @@ public class CraftsFragment extends Fragment {
             ImageView img = v.findViewById(R.id.card_img);
             img.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
             final LinearLayout line = v.findViewById(R.id.card_line);
-            line.setPadding(100, 150, 100, 0);
+            line.setPadding(100, 100, 100, 100);
             if (id < 10) {
-                url = "https://img.fgowiki.com/fgo/card/equip/00" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/card/00" + id + "A.png";
             } else if (id < 100) {
-                url = "https://img.fgowiki.com/fgo/card/equip/0" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/card/0" + id + "A.png";
             } else {
-                url = "https://img.fgowiki.com/fgo/card/equip/" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/card/" + id + "A.png";
             }
 
             Glide.with(this)
@@ -89,11 +89,11 @@ public class CraftsFragment extends Fragment {
             }
 
             if (id < 10) {
-                url = "https://img.fgowiki.com/fgo/card/equip/00" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/card/00" + id + "A.png";
             } else if (id < 100) {
-                url = "https://img.fgowiki.com/fgo/card/equip/0" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/card/0" + id + "A.png";
             } else {
-                url = "https://img.fgowiki.com/fgo/card/equip/" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/card/" + id + "A.png";
             }
             Glide.with(this)
                     .load(url)

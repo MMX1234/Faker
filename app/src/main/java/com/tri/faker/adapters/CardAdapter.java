@@ -66,11 +66,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         String url = null;
         if (type == 1) {
             if (id < 10) {
-                url = "https://img.fgowiki.com/fgo/head/00" + id + ".jpg";
+                url = "https://cdn.umowang.com/media/fgo/servant/head/00" + id + ".jpg";
             } else if (id < 100) {
-                url = "https://img.fgowiki.com/fgo/head/0" + id + ".jpg";
+                url = "https://cdn.umowang.com/media/fgo/servant/head/0" + id + ".jpg";
             } else {
-                url = "https://img.fgowiki.com/fgo/head/" + id + ".jpg";
+                url = "https://cdn.umowang.com/media/fgo/servant/head/" + id + ".jpg";
             }
             holder.cardId.setText(String.valueOf(card.getId()));
             Glide.with(mContext)

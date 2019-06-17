@@ -155,11 +155,11 @@ public class ItemActivity extends AppCompatActivity {
                     .into(imageView);
         } else if (type == 2) {
             if (id < 10) {
-                url = "https://img.fgowiki.com/fgo/card/equip/00" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/head/00" + id + ".jpg";
             } else if (id < 100) {
-                url = "https://img.fgowiki.com/fgo/card/equip/0" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/head/0" + id + ".jpg";
             } else {
-                url = "https://img.fgowiki.com/fgo/card/equip/" + id + "A.png";
+                url = "https://cdn.umowang.com/media/fgo/equip/head/" + id + ".jpg";
             }
             Glide.with(this)
                     .load(url)
